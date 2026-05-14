@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fixarna Göteborg — Professional Home Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #185FA5;
+      --blue-dark: #0C447C;
+      --blue-light: #E6F1FB;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --border: rgba(0,0,0,0.1);
+      --bg: #ffffff;
+      --bg-soft: #f8f8f6;
+      --amber: #BA7517;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 600; color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--blue); color: #fff;
+      font-size: 13px; font-weight: 500; padding: 9px 20px;
+      border-radius: 7px; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+    .nav-mobile-btn { display: none; background: none; border: none; cursor: pointer; font-size: 22px; }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 2.5rem 4rem;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px; font-weight: 500; line-height: 1.1;
+      letter-spacing: -1.5px; margin-bottom: 1.4rem;
+    }
+    h1 em { font-style: italic; color: var(--blue); }
+    .hero-sub {
+      font-size: 16px; color: var(--text-muted);
+      line-height: 1.75; font-weight: 300; margin-bottom: 2.2rem;
+      max-width: 440px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: #fff;
+      font-size: 14px; font-weight: 500; padding: 13px 28px;
+      border-radius: 8px; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      display: inline-block; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      font-size: 14px; font-weight: 400; padding: 13px 22px;
+      border-radius: 8px; border: 0.5px solid var(--border); cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      display: inline-block; transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--bg-soft); }
+
+    .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hcard {
+      background: var(--bg-soft);
+      border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 1.2rem;
+    }
+    .hcard-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--blue-light); display: flex;
+      align-items: center; justify-content: center; margin-bottom: 10px; font-size: 18px;
+    }
+    .hcard-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+    .hcard-sub { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .hcard.wide {
+      grid-column: span 2; display: flex; align-items: center;
+      gap: 16px; background: var(--blue);
+    }
+    .hcard.wide .hcard-icon { background: rgba(255,255,255,0.15); font-size: 20px; }
+    .hcard.wide .hcard-title { color: #fff; font-size: 14px; }
+    .hcard.wide .hcard-sub { color: rgba(255,255,255,0.75); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--bg-soft);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 1.8rem 2.5rem;
+      display: flex; justify-content: center;
+      gap: 4rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px; font-weight: 500; color: var(--blue);
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 500;
+      letter-spacing: -0.5px; margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 15px; color: var(--text-muted);
+      line-height: 1.75; max-width: 500px;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 2.5rem;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover { border-color: rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .service-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--blue-light); display: flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 1rem; font-size: 22px;
+    }
+    .service-name { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+    .service-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .service-price { font-size: 13px; color: var(--blue); font-weight: 500; margin-top: 12px; }
+
+    /* WHY US */
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; margin-top: 2.5rem; align-items: start;
+    }
+    .why-list { display: flex; flex-direction: column; gap: 18px; }
+    .why-item { display: flex; gap: 14px; align-items: flex-start; }
+    .why-check {
+      width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+      background: var(--blue-light); display: flex;
+      align-items: center; justify-content: center; font-size: 14px; color: var(--blue);
+    }
+    .why-item-title { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+    .why-item-sub { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+    .testimonial {
+      background: var(--bg-soft);
+      border: 0.5px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+    }
+    .stars { color: var(--amber); font-size: 18px; letter-spacing: 2px; margin-bottom: 1rem; }
+    .testimonial-text {
+      font-size: 15px; line-height: 1.75; font-style: italic;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial-author { font-size: 13px; font-weight: 500; }
+    .testimonial-location { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--blue); border-radius: 16px;
+      padding: 3rem; display: flex;
+      justify-content: space-between; align-items: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px; font-weight: 500; color: #fff; margin-bottom: 8px;
+    }
+    .contact-sub { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 380px; }
+    .contact-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contact-input {
+      background: rgba(255,255,255,0.15);
+      border: 0.5px solid rgba(255,255,255,0.3);
+      border-radius: 8px; padding: 12px 16px;
+      font-size: 14px; color: #fff; font-family: 'DM Sans', sans-serif;
+      outline: none; width: 220px;
+    }
+    .contact-input::placeholder { color: rgba(255,255,255,0.55); }
+    .contact-input:focus { border-color: rgba(255,255,255,0.6); }
+    .btn-white {
+      background: #fff; color: var(--blue);
+      font-size: 14px; font-weight: 500; padding: 12px 22px;
+      border-radius: 8px; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-white:hover { background: var(--blue-light); }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 600; text-decoration: none; color: var(--text);
+    }
+    .footer-logo span { color: var(--blue); }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-btn { display: block; }
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.2rem; }
+      h1 { font-size: 36px; }
+      .hero-cards { grid-template-columns: 1fr 1fr; }
+      .stats-bar { gap: 2rem; padding: 1.5rem 1.2rem; }
+      .section { padding: 3rem 1.2rem; }
+      h2 { font-size: 28px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-box { flex-direction: column; padding: 2rem 1.5rem; }
+      .contact-form { width: 100%; }
+      .contact-input { width: 100%; }
+      footer { flex-direction: column; text-align: center; padding: 1.5rem 1.2rem; }
+    }
+
+    /* FADE-IN ANIMATION */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeUp 0.6s ease both; }
+    .fade-in-2 { animation: fadeUp 0.6s 0.15s ease both; }
+    .fade-in-3 { animation: fadeUp 0.6s 0.3s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Fix<span>arna</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Tjänster</a></li>
+      <li><a href="#why">Om oss</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Boka nu</a>
+    <button class="nav-mobile-btn" onclick="alert('Add your phone number here!')">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow fade-in">Göteborg's hemserviceproffs</div>
+      <h1 class="fade-in-2">Ditt hem,<br><em>perfekt</em><br>omhändertaget</h1>
+      <p class="hero-sub fade-in-3">Professionella hemtjänster i Göteborg — från trädgård till städning. Pålitliga, punktliga och alltid nöjda kunder.</p>
+      <div class="hero-actions fade-in-3">
+        <a class="btn-primary" href="#contact">Boka en tjänst</a>
+        <a class="btn-secondary" href="#services">Se våra tjänster</a>
+      </div>
+    </div>
+    <div class="hero-cards fade-in-2">
+      <div class="hcard">
+        <div class="hcard-icon">🌿</div>
+        <div class="hcard-title">Trädgård</div>
+        <div class="hcard-sub">Gräsklippning, ogräsrensning & säsongsrengöring</div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-icon">🏠</div>
+        <div class="hcard-title">Städning</div>
+        <div class="hcard-sub">Hem & lägenheter, flytt-städning</div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-icon">❄️</div>
+        <div class="hcard-title">Snöröjning</div>
+        <div class="hcard-sub">Uppfarter, gångvägar & entréer</div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-icon">🔧</div>
+        <div class="hcard-title">Diverse jobb</div>
+        <div class="hcard-sub">Montering, flytt & allmänna reparationer</div>
+      </div>
+      <div class="hcard wide">
+        <div class="hcard-icon">⭐</div>
+        <div>
+          <div class="hcard-title">ROT-avdrag godkänt — spara 30% på arbetet</div>
+          <div class="hcard-sub">Vi sköter all kontakt med Skatteverket åt dig</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Nöjdhetsgaranti</div></div>
+    <div class="stat"><div class="stat-num">Swish</div><div class="stat-label">Enkel betalning</div></div>
+    <div class="stat"><div class="stat-num">Samma vecka</div><div class="stat-label">Bokning tillgänglig</div></div>
+    <div class="stat"><div class="stat-num">Göteborg</div><div class="stat-label">Lokalt & pålitligt</div></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-label">Vad vi erbjuder</div>
+    <h2>Tjänster anpassade för ditt hem</h2>
+    <p class="section-sub">Allt ditt hem behöver, utfört professionellt så att du inte behöver oroa dig.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <div class="service-name">Trädgård & gräsklippning</div>
+        <div class="service-desc">Klippning, kantning, ogräsrensning, plantering och säsongsrengöring inför vinter och vår.</div>
+        <div class="service-price">Från 450 kr / besök</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧹</div>
+        <div class="service-name">Hemstädning</div>
+        <div class="service-desc">Regelbunden städning, storstädning och flytt-städning. ROT-avdrag berättigat.</div>
+        <div class="service-price">Från 350 kr / timme</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💦</div>
+        <div class="service-name">Högtryckstvätt</div>
+        <div class="service-desc">Uteplats, uppfart, altaner, staket och fasader. Ser ut som nytt igen.</div>
+        <div class="service-price">Från 800 kr / tillfälle</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">❄️</div>
+        <div class="service-name">Snö- & isröjning</div>
+        <div class="service-desc">Vinteravtal tillgängliga. Uppfarter och gångvägar röjda innan du vaknar.</div>
+        <div class="service-price">Från 250 kr / besök</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛋️</div>
+        <div class="service-name">Flytt & montering</div>
+        <div class="service-desc">IKEA-montering, möbelflytt, tunga lyft och hjälp med omorganisering i hemmet.</div>
+        <div class="service-price">Från 400 kr / timme</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Skräddarsydda paket</div>
+        <div class="service-desc">Behöver du något annat? Vi erbjuder anpassade månadspaket för återkommande kunder.</div>
+        <div class="service-price">Offert på begäran</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section" id="why" style="padding-top: 0;">
+    <div class="section-label">Varför välja oss</div>
+    <h2>Professionella, pålitliga & lokala</h2>
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-item-title">Alltid punktliga</div>
+            <div class="why-item-sub">Vi dyker upp när vi säger att vi ska. Inga ursäkter, inga avbokningar i sista minuten.</div>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-item-title">Swish & faktura</div>
+            <div class="why-item-sub">Betala enkelt via Swish eller få en ordentlig faktura. Inga kontanter behövs.</div>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-item-title">ROT-avdrag sköts av oss</div>
+            <div class="why-item-sub">Vi ansöker om skatteavdraget direkt — du betalar bara 50% av arbetskostnaden.</div>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-item-title">Lokalt team i Göteborg</div>
+            <div class="why-item-sub">Vi bor här också. Vi bryr oss om vårt rykte i området.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Fantastisk service — de skötte hela vår trädgård inför sommaren och det såg otroligt ut. Väldigt professionella. Bokar definitivt igen!"</p>
+        <div class="testimonial-author">Maria Lindström</div>
+        <div class="testimonial-location">Haga, Göteborg</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact" style="padding-top: 0;">
+    <div class="contact-box">
+      <div>
+        <div class="contact-title">Redo att boka?</div>
+        <p class="contact-sub">Lämna ditt telefonnummer så ringer vi upp dig inom 2 timmar för att ordna allt.</p>
+      </div>
+      <div class="contact-form">
+        <input class="contact-input" type="tel" placeholder="Ditt telefonnummer" />
+        <button class="btn-white" onclick="alert('Tack! Vi ringer dig snart.')">Begär återuppringning</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="#">Fix<span>arna</span></a>
+    <div class="footer-copy">© 2025 Fixarna Göteborg</div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="mailto:info@fixarna.se">E-post</a>
+    </div>
+  </footer>
+
+</body>
+</html>
